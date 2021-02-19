@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '14.0'
+
+target 'SearchMusic' do
+  use_frameworks!
+
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+
+  pod 'SnapKit'
+
+end
