@@ -53,5 +53,10 @@ class ListViewController: UIViewController {
                 cell.textLabel?.text = model
             }
             .disposed(by: bag)
+        
+        albums
+            .map { "\($0.count)" }
+            .bind(to: rx.title)
+            .disposed(by: bag)
     }
 }

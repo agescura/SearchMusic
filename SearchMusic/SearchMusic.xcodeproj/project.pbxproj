@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		950AEDCB25E070C3003261D0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDCA25E070C3003261D0 /* ListViewController.swift */; };
+		950AEDCF25E07514003261D0 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDCE25E07514003261D0 /* MainNavigationController.swift */; };
 		95A87E0725E06C9A001E0C78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A87E0625E06C9A001E0C78 /* AppDelegate.swift */; };
 		95A87E0925E06C9A001E0C78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A87E0825E06C9A001E0C78 /* SceneDelegate.swift */; };
 		95A87E0B25E06C9A001E0C78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A87E0A25E06C9A001E0C78 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		6F38BA0A8E8A50C0A67F7D53 /* Pods_SearchMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		950AEDCA25E070C3003261D0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		950AEDCE25E07514003261D0 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		95A87E0325E06C9A001E0C78 /* SearchMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95A87E0625E06C9A001E0C78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95A87E0825E06C9A001E0C78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				950AEDCA25E070C3003261D0 /* ListViewController.swift */,
+				950AEDCE25E07514003261D0 /* MainNavigationController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950AEDCF25E07514003261D0 /* MainNavigationController.swift in Sources */,
 				95A87E0B25E06C9A001E0C78 /* ViewController.swift in Sources */,
 				95A87E0725E06C9A001E0C78 /* AppDelegate.swift in Sources */,
 				950AEDCB25E070C3003261D0 /* ListViewController.swift in Sources */,
