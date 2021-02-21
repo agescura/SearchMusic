@@ -40,9 +40,9 @@ class ListTableViewCell: UITableViewCell {
     private func customInit() {
         selectionStyle = .none
         
-        horizontalStackView.addArrangedSubviews([country, year])
-        verticalStackView.addArrangedSubviews([title,
-                                               genre,
+        horizontalStackView.addArrangedSubviews([countryLabel, yearLabel])
+        verticalStackView.addArrangedSubviews([titleLabel,
+                                               genreLabel,
                                                horizontalStackView])
         contentView.addSubview(verticalStackView)
             

@@ -42,8 +42,7 @@ class ListViewController: UIViewController {
             }
             .disposed(by: bag)
         
-        viewModel.albums
-            .map { "\($0.count)" }
+        viewModel.numberOfAlbums
             .bind(to: rx.title)
             .disposed(by: bag)
     }

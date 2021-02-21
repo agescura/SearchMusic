@@ -15,4 +15,6 @@ struct ListViewModel {
         Album(title: "Hunky Dory", genre: "Rock", country: "UK", year: "1983"),
         Album(title: "Fear of Music", genre: "Heavy Metal", country: "UK", year: "1979")
     ])
+    
+    lazy var numberOfAlbums: Observable<String> = albums.map { "\($0.count)" }
 }
