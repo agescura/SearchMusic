@@ -13,25 +13,13 @@ import RxDataSources
 
 class ListViewController: UIViewController {
     
-    // MARK: - Fakes (temporal)
+    // MARK: - ViewModel
     
-    private let albums: Observable<[String]> = .just([
-        "London Calling",
-        "Ok Computer",
-        "Hunky Dory",
-        "Dark Side Of The Moon",
-        "Fear of Music"
-    ])
+    var viewModel: ListViewModel!
     
     // MARK: - Outlets
     
-    private let tableView: UITableView = {
-        let view = UITableView()
-        view.register(UITableViewCell.self,
-                      forCellReuseIdentifier: "UITableViewCell")
-        view.tableFooterView = UIView()
-        return view
-    }()
+    private let tableView = TableView()
     
     // MARK: - Bag
     
@@ -48,13 +36,13 @@ class ListViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        albums
-            .bind(to: tableView.rx.items(cellIdentifier: "UITableViewCell")) { _, model, cell in
-                cell.textLabel?.text = model
+        viewModel.albums
+            .bind(to: tableView.rx.items(ListTableViewCell.self)) { _, model, cell in
+                cell.viewModel = model
             }
             .disposed(by: bag)
         
-        albums
+        viewModel.albums
             .map { "\($0.count)" }
             .bind(to: rx.title)
             .disposed(by: bag)
