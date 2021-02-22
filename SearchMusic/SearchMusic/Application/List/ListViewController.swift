@@ -21,6 +21,23 @@ class ListViewController: UIViewController {
     
     private let tableView = TableView()
     
+    // MARK: - RxDataSources
+    
+    let dataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>(
+      configureCell: { dataSource, tableView, indexPath, item in
+        switch dataSource[indexPath] {
+        case .search(viewModel: let viewModel):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell",
+                                                     for: indexPath) as! ListTableViewCell
+            cell.viewModel = viewModel
+            return cell
+        case .message:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell",
+                                                     for: indexPath) as! MessageTableViewCell
+            return cell
+        }
+    })
+    
     // MARK: - Bag
     
     private let bag = DisposeBag()
@@ -37,12 +54,12 @@ class ListViewController: UIViewController {
         }
         
         viewModel.albums
-            .bind(to: tableView.rx.items(ListTableViewCell.self)) { _, model, cell in
-                cell.viewModel = model
-            }
+            .catchAndReturn(ListSectionModel.message)
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
         
         viewModel.numberOfAlbums
+            .catchAndReturn("Error")
             .bind(to: rx.title)
             .disposed(by: bag)
     }

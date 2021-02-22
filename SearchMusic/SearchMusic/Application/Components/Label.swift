@@ -9,10 +9,12 @@ import UIKit
 
 class Label: UILabel {
     
-    init(with font: UIFont = .systemFont(ofSize: 16)) {
+    init(with font: UIFont = .systemFont(ofSize: 16),
+         textColor: UIColor = .black) {
         super.init(frame: .zero)
         
         self.font = font
+        self.textColor = textColor
     }
     
     required init?(coder: NSCoder) {

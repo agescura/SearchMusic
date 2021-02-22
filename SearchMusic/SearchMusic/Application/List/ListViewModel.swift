@@ -7,14 +7,16 @@
 
 import RxSwift
 
-struct ListViewModel {
+class ListViewModel {
     
-    let albums: Observable<[Album]> = .just([
-        Album(title: "London Calling", genre: "Rock", country: "UK", year: "1990"),
-        Album(title: "Ok Computer", genre: "Alternative", country: "UK", year: "1997"),
-        Album(title: "Hunky Dory", genre: "Rock", country: "UK", year: "1983"),
-        Album(title: "Fear of Music", genre: "Heavy Metal", country: "UK", year: "1979")
-    ])
+    let searchUseCase: SearchUseCaseProtocol
     
-    lazy var numberOfAlbums: Observable<String> = albums.map { "\($0.count)" }
+    init(with useCase: SearchUseCaseProtocol) {
+        self.searchUseCase = useCase
+    }
+    
+    lazy var albums: Observable<[ListSectionModel]> = searchUseCase.albums
+        .map { [ListSectionModel](with: $0) }
+    
+    lazy var numberOfAlbums: Observable<String> = searchUseCase.albums.map { "\($0.count)" }
 }

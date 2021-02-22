@@ -13,6 +13,7 @@ class TableView: UITableView {
         super.init(frame: .zero, style: .plain)
         
         register(ListTableViewCell.self)
+        register(MessageTableViewCell.self)
         tableFooterView = UIView()
     }
     

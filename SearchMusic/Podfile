@@ -9,5 +9,13 @@ target 'SearchMusic' do
   pod 'RxDataSources'
 
   pod 'SnapKit'
+  
+  target 'SearchMusicTests' do
+    use_frameworks!
+    inherit! :search_paths
+    
+    pod 'RxBlocking'
+    pod 'RxTest'
+  end
 
 end

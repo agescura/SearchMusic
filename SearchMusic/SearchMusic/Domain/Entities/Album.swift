@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Album {
+struct Album: Equatable {
     let title: String
     let genre: String
     let country: String

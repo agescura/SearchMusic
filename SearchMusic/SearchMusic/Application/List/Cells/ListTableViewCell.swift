@@ -60,3 +60,4 @@ class ListTableViewCell: UITableViewCell {
         yearLabel.text = viewModel.year
     }
 }
+
