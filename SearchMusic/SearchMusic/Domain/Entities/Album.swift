@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Album: Equatable {
+struct Album {
     let title: String
-    let genre: String
-    let country: String
-    let year: String
-    
+    let genre: [String]
+    let country: String?
+    let year: String?
 }
+
+extension Album: Equatable {}

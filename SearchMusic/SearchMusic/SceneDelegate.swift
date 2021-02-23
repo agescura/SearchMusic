@@ -14,7 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        let useCase = SearchUseCase()
+        let apiService = DiscogsService()
+        let useCase = SearchUseCase(with: apiService)
         let listViewModel = ListViewModel(with: useCase)
         let listViewController = ListViewController()
         listViewController.viewModel = listViewModel

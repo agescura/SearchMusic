@@ -20,7 +20,7 @@ class ListTableViewCell: UITableViewCell {
 
     private let verticalStackView = StackView()
     private let horizontalStackView = StackView(with: .horizontal)
-    private let titleLabel = Label(with: .boldSystemFont(ofSize: 18))
+    private let titleLabel = Label(with: .boldSystemFont(ofSize: 18), textColor: .black, numberOfLines: 0)
     private let genreLabel = Label(with: .italicSystemFont(ofSize: 14))
     private let countryLabel = Label()
     private let yearLabel = Label()
@@ -55,7 +55,7 @@ class ListTableViewCell: UITableViewCell {
     
     private func bind() {
         titleLabel.text = viewModel.title
-        genreLabel.text = viewModel.genre
+        genreLabel.text = viewModel.genre.joined(separator: ",")
         countryLabel.text = viewModel.country
         yearLabel.text = viewModel.year
     }
