@@ -9,11 +9,9 @@ import RxSwift
 
 extension ObservableType {
     
-    public func mapObject<T: Codable>(type: T.Type) -> Observable<T> {
+    public func map<T: Codable>(_ type: T.Type) -> Observable<T> {
         return flatMap { data -> Observable<T> in
-            let data = data as? Data
-
-            guard let jsonData = data else {
+            guard let jsonData = data as? Data else {
                 throw NSError(
                     domain: "",
                     code: -1,
@@ -24,15 +22,13 @@ extension ObservableType {
             let decoder = JSONDecoder()
             let object = try decoder.decode(T.self, from: jsonData)
             
-            return Observable.just(object)
+            return .just(object)
         }
     }
     
-    public func mapArray<T: Codable>(type: T.Type) -> Observable<[T]> {
+    public func map<T: Codable>(_ type: T.Type) -> Observable<[T]> {
         return flatMap { data -> Observable<[T]> in
-            let data = data as? Data
-            
-            guard let jsonData = data else {
+            guard let jsonData = data as? Data else {
                 throw NSError(
                     domain: "",
                     code: -1,
@@ -43,7 +39,7 @@ extension ObservableType {
             let decoder = JSONDecoder()
             let objects = try decoder.decode([T].self, from: jsonData)
             
-            return Observable.just(objects)
+            return .just(objects)
         }
     }
 }

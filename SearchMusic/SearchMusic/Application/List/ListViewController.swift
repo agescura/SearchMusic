@@ -54,12 +54,12 @@ class ListViewController: UIViewController {
         }
         
         viewModel.albums
-            .catchAndReturn(ListSectionModel.message)
+            .catchErrorJustReturn(ListSectionModel.message)
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
         
         viewModel.numberOfAlbums
-            .catchAndReturn("Error")
+            .catchErrorJustReturn("Error")
             .bind(to: rx.title)
             .disposed(by: bag)
     }

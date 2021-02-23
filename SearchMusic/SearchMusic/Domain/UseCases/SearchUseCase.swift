@@ -13,13 +13,16 @@ protocol SearchUseCaseProtocol {
 
 class SearchUseCase: SearchUseCaseProtocol {
     
-    private let service: MusicService
+    private let service: MusicRepository
     
-    init(with service: MusicService) {
+    init(with service: MusicRepository) {
         self.service = service
     }
     
-    lazy var albums: Observable<[Album]> = service.albums(q: "Nirvana").map { $0.albums.map(Album.init) }
+    lazy var albums: Observable<[Album]> = service
+        .albums(q: "Nirvana")
+        .map { $0.albums.map(Album.init) }
+        .asObservable()
 }
 
 extension Album {

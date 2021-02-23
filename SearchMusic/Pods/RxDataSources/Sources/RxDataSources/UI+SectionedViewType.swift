@@ -102,7 +102,6 @@ public protocol SectionedViewType {
 
 extension SectionedViewType {
     public func batchUpdates<Section>(_ changes: Changeset<Section>, animationConfiguration: AnimationConfiguration) {
-        // swiftlint:disable:next nesting
         typealias Item = Section.Item
         
         deleteSections(changes.deletedSections, animationStyle: animationConfiguration.deleteAnimation)

@@ -5,47 +5,46 @@
 //  Created by Albert Gil Escura on 23/2/21.
 //
 
-import RxSwift
-import RxAlamofire
-import Alamofire
+import Moya
 
-protocol MusicService {
-    func albums(q: String) -> Observable<SearchDTO>
-}
-
-class DiscogsService: MusicService {
+enum DiscogsService: TargetType {
+    case searchAlbums(q: String)
     
-    // MARK: Service
-    
-    private let manager = Alamofire.Session.default
-    
-    // MARK: Public Methods
-    
-    func albums(q: String) -> Observable<SearchDTO> {
-        return get("https://api.discogs.com/database/search?q=\(q)&key=RJzRdxSSJZoUmwgCyyPG&secret=ohfTefiIpsuelDjeXBgUxveQgnIOjLfO&page=2")
-            .mapObject(type: SearchDTO.self)
+    var baseURL: URL {
+        URL(string: "https://api.discogs.com/database")!
     }
     
-    // MARK: Private methods
-    
-    fileprivate func get(_ path: String) -> Observable<Data> {
-        return manager.rx
-            .data(.get, path)
-            .observe(on: MainScheduler.instance)
+    var path: String {
+        switch self {
+        case .searchAlbums:
+            return "/search"
+        }
     }
-}
-
-struct SearchDTO: Codable {
-    let albums: [AlbumsDTO]
     
-    enum CodingKeys: String, CodingKey {
-        case albums = "results"
+    var method: Moya.Method {
+        .get
     }
-}
-
-struct AlbumsDTO: Codable {
-    let country: String?
-    let title: String
-    let genre: [String]?
-    let year: String?
+    
+    var sampleData: Data {
+        Data()
+    }
+    
+    var task: Task {
+      switch self {
+      case .searchAlbums(q: let q):
+        return .requestParameters(
+            parameters: [
+                "key": "RJzRdxSSJZoUmwgCyyPG",
+                "secret": "ohfTefiIpsuelDjeXBgUxveQgnIOjLfO",
+                "q": q
+            ],
+          encoding: URLEncoding.default)
+      }
+    }
+    
+    var headers: [String : String]? {
+        return [
+            "Content-type": "application/json",
+        ]
+    }
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if !os(watchOS)
 import RxSwift
 import XCTest
 /**
@@ -47,8 +46,8 @@ public func XCTAssertEqual<Element: Equatable>(_ lhs: [Event<Element>], _ rhs: [
  - parameter lhs: second set of events.
  */
 public func XCTAssertEqual<Element: Equatable>(_ lhs: [SingleEvent<Element>], _ rhs: [SingleEvent<Element>], file: StaticString = #file, line: UInt = #line) {
-    let leftEquatable = lhs.map { AnyEquatable(target: try? $0.get(), comparer: ==) }
-    let rightEquatable = rhs.map { AnyEquatable(target: try? $0.get(), comparer: ==) }
+    let leftEquatable = lhs.map { AnyEquatable(target: $0, comparer: ==) }
+    let rightEquatable = rhs.map { AnyEquatable(target: $0, comparer: ==) }
     #if os(Linux)
         XCTAssertEqual(leftEquatable, rightEquatable)
     #else
@@ -58,7 +57,7 @@ public func XCTAssertEqual<Element: Equatable>(_ lhs: [SingleEvent<Element>], _ 
         return
     }
 
-    printSequenceDifferences(lhs.map { try? $0.get() }, rhs.map { try? $0.get() }, ==)
+    printSequenceDifferences(lhs, rhs, ==)
 }
 
 /**
@@ -231,4 +230,3 @@ func printSequenceDifferences<Element>(_ lhs: [Element], _ rhs: [Element], _ equ
         print("rhs[\(index + shortest)]:\n    \(element)")
     }
 }
-#endif

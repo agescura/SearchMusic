@@ -10,12 +10,11 @@ import Foundation
 
 @_exported import Differentiator
 
-enum RxDataSourceError: Error {
+enum RxDataSourceError : Error {
   case preconditionFailed(message: String)
-  case outOfBounds(indexPath: IndexPath)
 }
 
-func rxPrecondition(_ condition: Bool, _ message: @autoclosure() -> String) throws {
+func rxPrecondition(_ condition: Bool, _ message: @autoclosure() -> String) throws -> () {
   if condition {
     return
   }
