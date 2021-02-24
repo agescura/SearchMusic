@@ -36,6 +36,7 @@
 		95EF868825E58E88009E6D01 /* SearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF868725E58E88009E6D01 /* SearchDTO.swift */; };
 		95EF868E25E58E97009E6D01 /* AlbumDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF868D25E58E97009E6D01 /* AlbumDTO.swift */; };
 		95EF869425E58ED7009E6D01 /* DiscogsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF869325E58ED7009E6D01 /* DiscogsService.swift */; };
+		95EF869A25E59731009E6D01 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF869925E59731009E6D01 /* Pagination.swift */; };
 		BED03A69B718494818173FD1 /* Pods_SearchMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD508C38B903296A2B5DE754 /* Pods_SearchMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		95EF868725E58E88009E6D01 /* SearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDTO.swift; sourceTree = "<group>"; };
 		95EF868D25E58E97009E6D01 /* AlbumDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDTO.swift; sourceTree = "<group>"; };
 		95EF869325E58ED7009E6D01 /* DiscogsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsService.swift; sourceTree = "<group>"; };
+		95EF869925E59731009E6D01 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		99B93CD044D4676F675D99DC /* Pods-SearchMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchMusic.release.xcconfig"; path = "Target Support Files/Pods-SearchMusic/Pods-SearchMusic.release.xcconfig"; sourceTree = "<group>"; };
 		A7E57B121CDD406206C3C8C5 /* Pods_SearchMusicTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchMusicTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DC6F7AEDB19D893FB70BBC /* Pods-SearchMusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchMusicTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchMusicTests/Pods-SearchMusicTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				95EF866F25E51D90009E6D01 /* Extension */,
 				95EF866925E51A2B009E6D01 /* DiscogsRepository.swift */,
 				95EF869325E58ED7009E6D01 /* DiscogsService.swift */,
+				95EF869925E59731009E6D01 /* Pagination.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				95A87E0B25E06C9A001E0C78 /* ViewController.swift in Sources */,
 				95EBEB2525E2491C007DE4C7 /* ListViewModel.swift in Sources */,
 				95A87E0725E06C9A001E0C78 /* AppDelegate.swift in Sources */,
+				95EF869A25E59731009E6D01 /* Pagination.swift in Sources */,
 				950957BC25E3E0DA0051F800 /* ApplicationError.swift in Sources */,
 				950AEDCB25E070C3003261D0 /* ListViewController.swift in Sources */,
 				95EBEB9325E30BDB007DE4C7 /* ListSectionItem.swift in Sources */,

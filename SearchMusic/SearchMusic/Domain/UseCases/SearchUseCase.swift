@@ -8,21 +8,34 @@
 import RxSwift
 
 protocol SearchUseCaseProtocol {
-    var albums: Observable<[Album]> { get }
+    func transform(_ inputs: SearchUseCase.Inputs) -> SearchUseCase.Outputs
 }
 
 class SearchUseCase: SearchUseCaseProtocol {
     
-    private let service: MusicRepository
-    
-    init(with service: MusicRepository) {
-        self.service = service
+    struct Inputs {
+        let loadNextPage: Observable<Void>
+        let loadSearch: Observable<String>
     }
     
-    lazy var albums: Observable<[Album]> = service
-        .albums(q: "Nirvana")
-        .map { $0.albums.map(Album.init) }
-        .asObservable()
+    struct Outputs {
+        let albums: Observable<[Album]>
+    }
+    
+    private let repository: MusicRepository
+    
+    let loadNextPage = PublishSubject<Void>()
+    let loadSearch = PublishSubject<String>()
+    
+    init(with repository: MusicRepository) {
+        self.repository = repository
+    }
+    
+    func transform(_ inputs: SearchUseCase.Inputs) -> SearchUseCase.Outputs {
+        let outputs = repository.transform(DiscogsRepository.Inputs(search: inputs.loadSearch, loadNextPage: inputs.loadNextPage))
+        
+        return SearchUseCase.Outputs(albums: outputs.albums)
+    }
 }
 
 extension Album {

@@ -6,8 +6,19 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class ListViewModel {
+    
+    struct Inputs {
+        let search: Driver<String>
+        let reachedBottom: Observable<Void>
+    }
+    
+    struct Outputs {
+        let albums: Driver<[ListSectionModel]>
+        let numberOfAlbums: Driver<String>
+    }
     
     let searchUseCase: SearchUseCaseProtocol
     
@@ -15,8 +26,18 @@ class ListViewModel {
         self.searchUseCase = useCase
     }
     
-    lazy var albums: Observable<[ListSectionModel]> = searchUseCase.albums
-        .map { [ListSectionModel](with: $0) }
-    
-    lazy var numberOfAlbums: Observable<String> = searchUseCase.albums.map { "\($0.count)" }
+    func transform(_ inputs: ListViewModel.Inputs) -> Outputs {
+        
+        let outputs = searchUseCase.transform(SearchUseCase.Inputs(loadNextPage: inputs.reachedBottom,
+                                                                   loadSearch: inputs.search.asObservable()))
+        
+        let albums = outputs.albums.map { [ListSectionModel](with: $0) }.asDriver(onErrorJustReturn: [])
+        let numberOfAlbums = outputs.albums.map { "\($0.count)" }.asDriver(onErrorJustReturn: "")
+        
+        
+        return ListViewModel.Outputs(
+            albums: albums,
+            numberOfAlbums: numberOfAlbums
+        )
+    }
 }

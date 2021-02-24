@@ -8,7 +8,7 @@
 import Moya
 
 enum DiscogsService: TargetType {
-    case searchAlbums(q: String)
+    case searchAlbums(q: String, p: Int)
     
     var baseURL: URL {
         URL(string: "https://api.discogs.com/database")!
@@ -31,12 +31,13 @@ enum DiscogsService: TargetType {
     
     var task: Task {
       switch self {
-      case .searchAlbums(q: let q):
+      case .searchAlbums(q: let q, p: let p):
         return .requestParameters(
             parameters: [
                 "key": "RJzRdxSSJZoUmwgCyyPG",
                 "secret": "ohfTefiIpsuelDjeXBgUxveQgnIOjLfO",
-                "q": q
+                "q": q,
+                "page": p
             ],
           encoding: URLEncoding.default)
       }
