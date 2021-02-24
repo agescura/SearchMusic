@@ -8,40 +8,40 @@
 import RxSwift
 import Moya
 
-protocol MusicRepository {
-    func transform(_ inputs: DiscogsRepository.Inputs) -> DiscogsRepository.Outputs
-}
-
-class DiscogsRepository: MusicRepository {
-    
-    struct Inputs {
-        let search: Observable<String>
-        let loadNextPage: Observable<Void>
-    }
-    
-    struct Outputs {
-        let albums: Observable<[Album]>
-    }
-    
-    func transform(_ inputs: Inputs) -> Outputs {
-        let source = PaginationUISource(search: inputs.search,
-                                        loadNextPage: inputs.loadNextPage)
-        let sink = PaginationSink(ui: source, loadData: search(q:page:))
-        
-        return Outputs(
-            albums: sink.elements
-        )
-    }
+class DiscogsRepository: TransformType {
     
     // MARK: Service
     
     private let provider = MoyaProvider<DiscogsService>()
     
-    // MARK: Public Methods
+    // MARK: Transform Type
     
-    private func search(q: String, page:Int) -> Single<[Album]> {
-        provider.rx.request(.searchAlbums(q: q, p: page))
+    func transform(input: Input) -> Output {
+        let source = PaginationUISource(search: input.search,
+                                        loadNextPage: input.loadNextPage)
+        let sink = PaginationSink(ui: source, loadData: search(album:page:))
+        
+        return Output(
+            albums: sink.elements
+        )
+    }
+    
+    // MARK: Private Methods
+    
+    private func search(album: String, page:Int) -> Single<[Album]> {
+        provider.rx.request(.search(album: album, page: page))
             .map(SearchDTO.self)
-            .map { $0.albums.map(Album.init) }
+            .map([Album].init)
+    }
+}
+
+extension DiscogsRepository {
+    struct Input {
+        let search: Observable<String>
+        let loadNextPage: Observable<Void>
+    }
+    
+    struct Output {
+        let albums: Observable<[Album]>
     }
 }

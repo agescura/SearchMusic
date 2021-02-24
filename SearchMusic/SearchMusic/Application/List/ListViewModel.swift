@@ -8,36 +8,52 @@
 import RxSwift
 import RxCocoa
 
-class ListViewModel {
+class ListViewModel: TransformType {
     
-    struct Inputs {
-        let search: Driver<String>
-        let reachedBottom: Observable<Void>
-    }
+    let searchUseCase: SearchUseCase
     
-    struct Outputs {
-        let albums: Driver<[ListSectionModel]>
-        let numberOfAlbums: Driver<String>
-    }
-    
-    let searchUseCase: SearchUseCaseProtocol
-    
-    init(with useCase: SearchUseCaseProtocol) {
+    init(with useCase: SearchUseCase) {
         self.searchUseCase = useCase
     }
     
-    func transform(_ inputs: ListViewModel.Inputs) -> Outputs {
+    func transform(input: Input) -> Output {
+        let search = input.search
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .filter { $0.count > 3 }
         
-        let outputs = searchUseCase.transform(SearchUseCase.Inputs(loadNextPage: inputs.reachedBottom,
-                                                                   loadSearch: inputs.search.asObservable()))
+        let inputs = SearchUseCase.Input(search: search,
+                                         loadNextPage: input.loadNextPage)
+        let outputs = searchUseCase.transform(input: inputs)
         
-        let albums = outputs.albums.map { [ListSectionModel](with: $0) }.asDriver(onErrorJustReturn: [])
-        let numberOfAlbums = outputs.albums.map { "\($0.count)" }.asDriver(onErrorJustReturn: "")
+        let albums = outputs.albums
+            .map { [ListSectionModel](with: $0) }
+            .catchErrorJustReturn(ListSectionModel.message)
         
+        let isLoading = Observable
+            .merge(input.loadNextPage.map { _ in true },
+                   outputs.albums.map { _ in false })
+            .startWith(false)
         
-        return ListViewModel.Outputs(
+        let numberOfAlbums = Observable.combineLatest(outputs.albums, isLoading)
+            { albums, isLoading in "\(albums.count) \(isLoading ? "- Loading" : "")" }
+            .catchErrorJustReturn("Error")
+        
+        return Output(
             albums: albums,
             numberOfAlbums: numberOfAlbums
         )
+    }
+}
+
+extension ListViewModel {
+    
+    struct Input {
+        let search: Observable<String>
+        let loadNextPage: Observable<Void>
+    }
+    
+    struct Output {
+        let albums: Observable<[ListSectionModel]>
+        let numberOfAlbums: Observable<String>
     }
 }

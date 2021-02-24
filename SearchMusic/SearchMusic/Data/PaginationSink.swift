@@ -7,23 +7,14 @@
 
 import RxSwift
 
-struct PaginationQuery {
-    let search: String
-    let page: Int
-}
-
 struct PaginationUISource {
     let search: Observable<String>
-    /// loads next page
     let loadNextPage: Observable<Void>
 }
 
 struct PaginationSink<T> {
-    /// true if network loading is in progress.
     let isLoading: Observable<Bool>
-    /// elements from all loaded pages
     let elements: Observable<[T]>
-    /// fires once for each error
     let error: Observable<Error>
 }
 

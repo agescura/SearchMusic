@@ -7,42 +7,38 @@
 
 import RxSwift
 
-protocol SearchUseCaseProtocol {
-    func transform(_ inputs: SearchUseCase.Inputs) -> SearchUseCase.Outputs
-}
-
-class SearchUseCase: SearchUseCaseProtocol {
+class SearchUseCase: TransformType {
     
-    struct Inputs {
-        let loadNextPage: Observable<Void>
-        let loadSearch: Observable<String>
-    }
+    // MARK: Repository
     
-    struct Outputs {
-        let albums: Observable<[Album]>
-    }
+    private let repository: DiscogsRepository
     
-    private let repository: MusicRepository
+    // MARK: Init
     
-    let loadNextPage = PublishSubject<Void>()
-    let loadSearch = PublishSubject<String>()
-    
-    init(with repository: MusicRepository) {
+    init(with repository: DiscogsRepository) {
         self.repository = repository
     }
     
-    func transform(_ inputs: SearchUseCase.Inputs) -> SearchUseCase.Outputs {
-        let outputs = repository.transform(DiscogsRepository.Inputs(search: inputs.loadSearch, loadNextPage: inputs.loadNextPage))
+    // MARK: - Transform Type
+    
+    func transform(input: Input) -> Output {
+        let input = DiscogsRepository.Input(search: input.search,
+                                            loadNextPage: input.loadNextPage)
+        let outputs = repository.transform(input: input)
         
-        return SearchUseCase.Outputs(albums: outputs.albums)
+        return Output(
+            albums: outputs.albums
+        )
     }
 }
 
-extension Album {
-    init(with dto: AlbumsDTO) {
-        self.country = dto.country
-        self.genre = dto.genre ?? []
-        self.title = dto.title
-        self.year = dto.year
+extension SearchUseCase {
+    struct Input {
+        let search: Observable<String>
+        let loadNextPage: Observable<Void>
+    }
+    
+    struct Output {
+        let albums: Observable<[Album]>
     }
 }
