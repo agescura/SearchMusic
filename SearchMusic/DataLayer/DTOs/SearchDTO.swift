@@ -8,7 +8,7 @@
 import Foundation
 
 struct SearchDTO: Codable {
-    let albums: [AlbumsDTO]
+    let albums: [AlbumDTO]
     
     enum CodingKeys: String, CodingKey {
         case albums = "results"

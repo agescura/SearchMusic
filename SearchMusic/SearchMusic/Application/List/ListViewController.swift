@@ -23,12 +23,12 @@ class ListViewController: UIViewController {
     
     // MARK: - RxDataSources
     
-    let dataSource = RxTableViewSectionedReloadDataSource<ListSectionModel>(
+    let dataSource = RxTableViewSectionedReloadDataSource<SearchSectionModel>(
       configureCell: { dataSource, tableView, indexPath, item in
         switch dataSource[indexPath] {
         case .search(viewModel: let viewModel):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell",
-                                                     for: indexPath) as! ListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell",
+                                                     for: indexPath) as! SearchTableViewCell
             cell.viewModel = viewModel
             return cell
         case .message:

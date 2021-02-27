@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import DataLayer
 
 extension Album {
-    init(with dto: AlbumsDTO) {
+    init(with dto: AlbumDTO) {
         self.country = dto.country
         self.genre = dto.genre ?? []
         self.title = dto.title

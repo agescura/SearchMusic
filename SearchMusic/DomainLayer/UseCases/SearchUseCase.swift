@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import DataLayer
 
 public class SearchUseCase: TransformType {
     
@@ -27,7 +28,9 @@ public class SearchUseCase: TransformType {
         let outputs = repository.transform(input: input)
         
         return Output(
-            albums: outputs.albums
+            albums: outputs
+                .albums
+                .map { $0.map(Album.init) }
         )
     }
 }

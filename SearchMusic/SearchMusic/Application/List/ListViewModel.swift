@@ -27,8 +27,8 @@ class ListViewModel: TransformType {
         let outputs = searchUseCase.transform(input: inputs)
         
         let albums = outputs.albums
-            .map { [ListSectionModel](with: $0) }
-            .catchErrorJustReturn(ListSectionModel.message)
+            .map { [SearchSectionModel](with: $0) }
+            .catchErrorJustReturn(SearchSectionModel.message)
         
         let isLoading = Observable
             .merge(input.loadNextPage.map { _ in true },
@@ -54,7 +54,7 @@ extension ListViewModel {
     }
     
     struct Output {
-        let albums: Observable<[ListSectionModel]>
+        let albums: Observable<[SearchSectionModel]>
         let numberOfAlbums: Observable<String>
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ListTableViewCell.swift
+//  SearchTableViewCell.swift
 //  SearchMusic
 //
 //  Created by Albert Gil Escura on 21/2/21.
@@ -7,13 +7,12 @@
 
 import SnapKit
 import UIKit
-import DomainLayer
 
-class ListTableViewCell: UITableViewCell {
+class SearchTableViewCell: UITableViewCell {
     
     // MARK: - ViewModel
     
-    var viewModel: Album! {
+    var viewModel: SearchViewModel! {
         didSet { bind() }
     }
     
@@ -56,9 +55,9 @@ class ListTableViewCell: UITableViewCell {
     
     private func bind() {
         titleLabel.text = viewModel.title
-        genreLabel.text = viewModel.genre.joined(separator: ",")
-        countryLabel.text = viewModel.country
-        yearLabel.text = viewModel.year
+        genreLabel.text = viewModel.subtitle
+        countryLabel.text = viewModel.leftText
+        yearLabel.text = viewModel.rightText
     }
 }
 

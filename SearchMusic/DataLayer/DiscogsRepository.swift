@@ -20,7 +20,7 @@ public class DiscogsRepository: TransformType {
     
     // MARK: Transform Type
     
-    func transform(input: Input) -> Output {
+    public func transform(input: Input) -> Output {
         let source = PaginationUISource(search: input.search,
                                         loadNextPage: input.loadNextPage)
         let sink = PaginationSink(ui: source, loadData: search(album:page:))
@@ -32,20 +32,25 @@ public class DiscogsRepository: TransformType {
     
     // MARK: Private Methods
     
-    private func search(album: String, page:Int) -> Single<[Album]> {
+    private func search(album: String, page:Int) -> Single<[AlbumDTO]> {
         provider.rx.request(.search(album: album, page: page))
             .map(SearchDTO.self)
-            .map([Album].init)
+            .map { $0.albums }
     }
 }
 
-extension DiscogsRepository {
+public extension DiscogsRepository {
     struct Input {
         let search: Observable<String>
         let loadNextPage: Observable<Void>
+        
+        public init(search: Observable<String>, loadNextPage: Observable<Void>) {
+            self.search = search
+            self.loadNextPage = loadNextPage
+        }
     }
     
     struct Output {
-        let albums: Observable<[Album]>
+        public let albums: Observable<[AlbumDTO]>
     }
 }
