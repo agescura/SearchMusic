@@ -5,9 +5,7 @@
 //  Created by Albert Gil Escura on 23/2/21.
 //
 
-import Foundation
-
-public struct AlbumDTO: Codable {
+public struct Album: Codable {
     public let country: String?
     public let title: String
     public let genre: [String]?

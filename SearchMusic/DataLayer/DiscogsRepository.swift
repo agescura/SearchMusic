@@ -32,7 +32,7 @@ public class DiscogsRepository: TransformType {
     
     // MARK: Private Methods
     
-    private func search(album: String, page:Int) -> Single<[AlbumDTO]> {
+    private func search(album: String, page:Int) -> Single<[Album]> {
         provider.rx.request(.search(album: album, page: page))
             .map(SearchDTO.self)
             .map { $0.albums }
@@ -51,6 +51,6 @@ public extension DiscogsRepository {
     }
     
     struct Output {
-        public let albums: Observable<[AlbumDTO]>
+        public let albums: Observable<[Album]>
     }
 }

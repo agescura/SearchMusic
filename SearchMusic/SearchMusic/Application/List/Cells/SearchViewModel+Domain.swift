@@ -1,5 +1,5 @@
 //
-//  SearchViewModel+Album.swift
+//  SearchViewModel+Domain.swift
 //  SearchMusic
 //
 //  Created by Albert Gil Escura on 27/2/21.

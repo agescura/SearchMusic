@@ -30,5 +30,5 @@ extension SearchSectionModel: SectionModelType {
 }
 
 extension SearchSectionModel {
-    static let message: [SearchSectionModel] = [SearchSectionModel.section(items: [SearchSectionItem.message])]
+    static let message: [SearchSectionModel] = [.section(items: [.message])]
 }

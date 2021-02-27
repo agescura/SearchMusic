@@ -28,9 +28,8 @@ public class SearchUseCase: TransformType {
         let outputs = repository.transform(input: input)
         
         return Output(
-            albums: outputs
-                .albums
-                .map { $0.map(Album.init) }
+            albums: outputs.albums
+                .map([Album].init)
         )
     }
 }
