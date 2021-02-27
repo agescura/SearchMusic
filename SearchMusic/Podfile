@@ -7,7 +7,6 @@ target 'SearchMusic' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
-  pod 'Moya/RxSwift'
 
   pod 'SnapKit'
   
@@ -18,5 +17,12 @@ target 'SearchMusic' do
     pod 'RxBlocking'
     pod 'RxTest'
   end
+end
 
+target 'DomainLayer' do
+  use_frameworks!
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Moya/RxSwift'
 end

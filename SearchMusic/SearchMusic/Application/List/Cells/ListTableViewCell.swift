@@ -7,6 +7,7 @@
 
 import SnapKit
 import UIKit
+import DomainLayer
 
 class ListTableViewCell: UITableViewCell {
     

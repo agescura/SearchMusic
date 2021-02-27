@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class SearchUseCase: TransformType {
+public class SearchUseCase: TransformType {
     
     // MARK: Repository
     
@@ -15,13 +15,13 @@ class SearchUseCase: TransformType {
     
     // MARK: Init
     
-    init(with repository: DiscogsRepository) {
+    public init(with repository: DiscogsRepository) {
         self.repository = repository
     }
     
     // MARK: - Transform Type
     
-    func transform(input: Input) -> Output {
+    public func transform(input: Input) -> Output {
         let input = DiscogsRepository.Input(search: input.search,
                                             loadNextPage: input.loadNextPage)
         let outputs = repository.transform(input: input)
@@ -32,13 +32,18 @@ class SearchUseCase: TransformType {
     }
 }
 
-extension SearchUseCase {
+public extension SearchUseCase {
     struct Input {
         let search: Observable<String>
         let loadNextPage: Observable<Void>
+        
+        public init(search: Observable<String>, loadNextPage: Observable<Void>) {
+            self.search = search
+            self.loadNextPage = loadNextPage
+        }
     }
     
     struct Output {
-        let albums: Observable<[Album]>
+        public let albums: Observable<[Album]>
     }
 }

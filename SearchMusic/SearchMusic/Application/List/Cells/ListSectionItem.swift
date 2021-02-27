@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DomainLayer
 
 enum ListSectionItem: Equatable {
     case search(viewModel: Album)

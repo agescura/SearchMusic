@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DomainLayer
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

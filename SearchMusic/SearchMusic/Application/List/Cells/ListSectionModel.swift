@@ -6,6 +6,7 @@
 //
 
 import RxDataSources
+import DomainLayer
 
 enum ListSectionModel: Equatable {
     case section(items: [ListSectionItem])

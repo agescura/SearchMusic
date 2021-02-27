@@ -8,11 +8,15 @@
 import RxSwift
 import Moya
 
-class DiscogsRepository: TransformType {
+public class DiscogsRepository: TransformType {
     
     // MARK: Service
     
     private let provider = MoyaProvider<DiscogsService>()
+    
+    // MARK: Init
+    
+    public init() {}
     
     // MARK: Transform Type
     
