@@ -1,0 +1,35 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '14.0'
+
+target 'SearchMusic' do
+  use_frameworks!
+
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+
+  pod 'SnapKit'
+  
+  target 'SearchMusicTests' do
+    use_frameworks!
+    inherit! :search_paths
+    
+    pod 'RxBlocking'
+    pod 'RxTest'
+  end
+end
+
+target 'DomainLayer' do
+  use_frameworks!
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+end
+
+target 'DataLayer' do
+  use_frameworks!
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Moya/RxSwift'
+end
