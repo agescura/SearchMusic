@@ -13,6 +13,7 @@ extension SearchViewModel {
         self.subtitle = album.genre.joined(separator: ",")
         self.leftText = album.country
         self.rightText = album.year
+        self.bottomImage = album.url
     }
 }
 

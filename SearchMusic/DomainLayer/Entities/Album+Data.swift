@@ -13,6 +13,7 @@ extension Album {
         self.genre = dto.genre ?? []
         self.title = dto.title
         self.year = dto.year
+        self.url = dto.url
     }
 }
 

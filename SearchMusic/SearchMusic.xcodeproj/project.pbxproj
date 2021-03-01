@@ -13,6 +13,9 @@
 		9509579E25E3939D0051F800 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509579D25E3939D0051F800 /* ListViewModelTests.swift */; };
 		950AEDCB25E070C3003261D0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDCA25E070C3003261D0 /* ListViewController.swift */; };
 		950AEDCF25E07514003261D0 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDCE25E07514003261D0 /* MainNavigationController.swift */; };
+		95908E2F25ED925E00B3F1B3 /* DataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959FE2AF25EA424300BF5952 /* DataLayer.framework */; };
+		95908E3025ED925E00B3F1B3 /* DataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 959FE2AF25EA424300BF5952 /* DataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		95908E8F25ED939700B3F1B3 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95908E8E25ED939700B3F1B3 /* ImageView.swift */; };
 		959FE23D25EA39CE00BF5952 /* DomainLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959FE23425EA39CE00BF5952 /* DomainLayer.framework */; };
 		959FE24425EA39CE00BF5952 /* DomainLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE24325EA39CE00BF5952 /* DomainLayerTests.swift */; };
 		959FE24625EA39CE00BF5952 /* DomainLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 959FE23625EA39CE00BF5952 /* DomainLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,8 +35,6 @@
 		959FE2E625EA426000BF5952 /* SearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF868725E58E88009E6D01 /* SearchDTO.swift */; };
 		959FE2EC25EA426400BF5952 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF868D25E58E97009E6D01 /* Album.swift */; };
 		959FE2F725EA426B00BF5952 /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF867025E51D9F009E6D01 /* ObservableType.swift */; };
-		959FE31025EA42C100BF5952 /* DataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959FE2AF25EA424300BF5952 /* DataLayer.framework */; };
-		959FE31125EA42C100BF5952 /* DataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 959FE2AF25EA424300BF5952 /* DataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		959FE31B25EA42E400BF5952 /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE31A25EA42E400BF5952 /* TransformType.swift */; };
 		959FE32925EA4A3D00BF5952 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE32825EA4A3D00BF5952 /* SearchViewModel.swift */; };
 		959FE34D25EA4DB500BF5952 /* SearchViewModel+Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE34C25EA4DB500BF5952 /* SearchViewModel+Domain.swift */; };
@@ -113,6 +114,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		95908E3125ED925E00B3F1B3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				95908E3025ED925E00B3F1B3 /* DataLayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		959FE24B25EA39CE00BF5952 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,17 +132,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				959FE24A25EA39CE00BF5952 /* DomainLayer.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		959FE31425EA42C100BF5952 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				959FE31125EA42C100BF5952 /* DataLayer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +151,7 @@
 		950957BB25E3E0DA0051F800 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
 		950AEDCA25E070C3003261D0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		950AEDCE25E07514003261D0 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		95908E8E25ED939700B3F1B3 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		959FE23425EA39CE00BF5952 /* DomainLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		959FE23625EA39CE00BF5952 /* DomainLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainLayer.h; sourceTree = "<group>"; };
 		959FE23725EA39CE00BF5952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -218,7 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				959FE31025EA42C100BF5952 /* DataLayer.framework in Frameworks */,
+				95908E2F25ED925E00B3F1B3 /* DataLayer.framework in Frameworks */,
 				2901DAD0A797068F6E030982 /* Pods_DomainLayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +483,7 @@
 				95EBEB3525E253EB007DE4C7 /* Label.swift */,
 				95EBEB3925E25412007DE4C7 /* StackView.swift */,
 				95EBEB3C25E255B2007DE4C7 /* TableView.swift */,
+				95908E8E25ED939700B3F1B3 /* ImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -573,7 +576,7 @@
 				959FE23025EA39CE00BF5952 /* Sources */,
 				959FE23125EA39CE00BF5952 /* Frameworks */,
 				959FE23225EA39CE00BF5952 /* Resources */,
-				959FE31425EA42C100BF5952 /* Embed Frameworks */,
+				95908E3125ED925E00B3F1B3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -951,6 +954,7 @@
 				950AEDCF25E07514003261D0 /* MainNavigationController.swift in Sources */,
 				95EBEB4F25E30AB3007DE4C7 /* MessageTableViewCell.swift in Sources */,
 				95EBEB9025E30BC9007DE4C7 /* SearchSectionModel.swift in Sources */,
+				95908E8F25ED939700B3F1B3 /* ImageView.swift in Sources */,
 				95EBEB3D25E255B2007DE4C7 /* TableView.swift in Sources */,
 				95EBEB3A25E25412007DE4C7 /* StackView.swift in Sources */,
 				95EBEB2D25E24C1D007DE4C7 /* SearchTableViewCell.swift in Sources */,

@@ -10,4 +10,5 @@ struct SearchViewModel: Equatable {
     let subtitle: String
     let leftText: String?
     let rightText: String?
+    let bottomImage: String
 }
