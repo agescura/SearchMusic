@@ -7,6 +7,9 @@ target 'SearchMusic' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'Alamofire'
+  pod 'Moya/RxSwift'
+  pod 'Kingfisher'
 
   pod 'SnapKit'
   
@@ -32,4 +35,5 @@ target 'DataLayer' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Moya/RxSwift'
+  pod 'Alamofire'
 end

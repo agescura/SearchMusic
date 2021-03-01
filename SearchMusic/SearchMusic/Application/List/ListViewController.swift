@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Kingfisher
 
 class ListViewController: UIViewController {
     
@@ -71,6 +72,17 @@ class ListViewController: UIViewController {
         
         outputs.numberOfAlbums
             .bind(to: rx.title)
+            .disposed(by: bag)
+        
+        tableView.rx.prefetchRows
+            .withLatestFrom(outputs.albums) { indexes, messages in
+                indexes.map { messages[$0.section].items[$0.row] }
+            }
+            .map { $0.compactMap { $0.url } }
+            .subscribe(onNext: { urls in
+                ImagePrefetcher(urls: urls)
+                    .start()
+            })
             .disposed(by: bag)
     }
 }

@@ -24,6 +24,7 @@ class SearchTableViewCell: UITableViewCell {
     private let genreLabel = Label(with: .italicSystemFont(ofSize: 14))
     private let countryLabel = Label()
     private let yearLabel = Label()
+    private let bottomImage = ImageView()
 
     // MARK: Init
 
@@ -36,6 +37,12 @@ class SearchTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        bottomImage.url = nil
+    }
 
     private func customInit() {
         selectionStyle = .none
@@ -43,11 +50,16 @@ class SearchTableViewCell: UITableViewCell {
         horizontalStackView.addArrangedSubviews([countryLabel, yearLabel])
         verticalStackView.addArrangedSubviews([titleLabel,
                                                genreLabel,
-                                               horizontalStackView])
+                                               horizontalStackView,
+                                               bottomImage])
         contentView.addSubview(verticalStackView)
-            
+        
         verticalStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(8)
+        }
+        
+        bottomImage.snp.makeConstraints {
+            $0.height.equalTo(100)
         }
     }
 
@@ -58,6 +70,7 @@ class SearchTableViewCell: UITableViewCell {
         genreLabel.text = viewModel.subtitle
         countryLabel.text = viewModel.leftText
         yearLabel.text = viewModel.rightText
+        bottomImage.url = viewModel.bottomImage
     }
 }
 

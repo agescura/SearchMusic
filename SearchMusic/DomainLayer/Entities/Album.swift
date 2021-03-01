@@ -10,6 +10,7 @@ public struct Album {
     public let genre: [String]
     public let country: String?
     public let year: String?
+    public let url: String
 }
 
 extension Album: Equatable {}

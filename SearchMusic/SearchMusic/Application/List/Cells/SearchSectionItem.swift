@@ -21,4 +21,13 @@ enum SearchSectionItem: Equatable {
             return false
         }
     }
+    
+    var url: URL? {
+        switch self {
+        case .search(viewModel: let viewModel):
+            return URL(string: viewModel.bottomImage)
+        case .message:
+            return nil
+        }
+    }
 }
